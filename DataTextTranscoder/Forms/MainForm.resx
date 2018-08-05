@@ -122,78 +122,226 @@
     <value>1</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="converterButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="fileConvertButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="converterButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="fileConvertButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="converterButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="fileConvertButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="fileConvertButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="converterButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="fileConvertButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="converterButton.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="fileConvertButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="converterButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 85</value>
+  <data name="fileConvertButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 39</value>
   </data>
-  <data name="converterButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="fileConvertButton.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="converterButton.Text" xml:space="preserve">
-    <value>Text-Encoding &amp;Converter</value>
+  <data name="fileConvertButton.Text" xml:space="preserve">
+    <value>Text &amp;File Encoding Converter</value>
   </data>
-  <data name="&gt;&gt;converterButton.Name" xml:space="preserve">
-    <value>converterButton</value>
+  <data name="&gt;&gt;fileConvertButton.Name" xml:space="preserve">
+    <value>fileConvertButton</value>
   </data>
-  <data name="&gt;&gt;converterButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;fileConvertButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;converterButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;fileConvertButton.Parent" xml:space="preserve">
     <value>mainTableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;converterButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;fileConvertButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="intepreterButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="textConvertButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="intepreterButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="textConvertButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="intepreterButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="textConvertButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="intepreterButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="textConvertButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="intepreterButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 94</value>
+  <data name="textConvertButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 48</value>
   </data>
-  <data name="intepreterButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 85</value>
+  <data name="textConvertButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 39</value>
   </data>
-  <data name="intepreterButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="textConvertButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="intepreterButton.Text" xml:space="preserve">
-    <value>&amp;Text-Encoding Intepreter</value>
+  <data name="textConvertButton.Text" xml:space="preserve">
+    <value>&amp;Text Transcoder</value>
   </data>
-  <data name="&gt;&gt;intepreterButton.Name" xml:space="preserve">
-    <value>intepreterButton</value>
+  <data name="&gt;&gt;textConvertButton.Name" xml:space="preserve">
+    <value>textConvertButton</value>
   </data>
-  <data name="&gt;&gt;intepreterButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;textConvertButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;intepreterButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;textConvertButton.Parent" xml:space="preserve">
     <value>mainTableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;intepreterButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;textConvertButton.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="exitButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="exitButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="exitButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="exitButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="exitButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 138</value>
+  </data>
+  <data name="exitButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 41</value>
+  </data>
+  <data name="exitButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="exitButton.Text" xml:space="preserve">
+    <value>E&amp;xit</value>
+  </data>
+  <data name="&gt;&gt;exitButton.Name" xml:space="preserve">
+    <value>exitButton</value>
+  </data>
+  <data name="&gt;&gt;exitButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;exitButton.Parent" xml:space="preserve">
+    <value>mainTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;exitButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="base64ConvertButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="base64ConvertButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="base64ConvertButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        RK5CYII=
+</value>
+  </data>
+  <data name="base64ConvertButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="base64ConvertButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="base64ConvertButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 93</value>
+  </data>
+  <data name="base64ConvertButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 39</value>
+  </data>
+  <data name="base64ConvertButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="base64ConvertButton.Text" xml:space="preserve">
+    <value>&amp;Base64 Coder</value>
+  </data>
+  <data name="&gt;&gt;base64ConvertButton.Name" xml:space="preserve">
+    <value>base64ConvertButton</value>
+  </data>
+  <data name="&gt;&gt;base64ConvertButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;base64ConvertButton.Parent" xml:space="preserve">
+    <value>mainTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;base64ConvertButton.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="mainTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -202,7 +350,7 @@
     <value>0, 0</value>
   </data>
   <data name="mainTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="mainTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 182</value>
@@ -220,10 +368,34 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mainTableLayoutPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="mainTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="converterButton" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="intepreterButton" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,50,Percent,50,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="fileConvertButton" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textConvertButton" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="exitButton" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="base64ConvertButton" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,20" /&gt;&lt;Rows Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <metadata name="base64ModeContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="encodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="encodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Encode</value>
+  </data>
+  <data name="decodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="decodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Decode</value>
+  </data>
+  <data name="base64ModeContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 48</value>
+  </data>
+  <data name="&gt;&gt;base64ModeContextMenuStrip.Name" xml:space="preserve">
+    <value>base64ModeContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;base64ModeContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1299,7 +1471,19 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Text-Encoding Toolkit</value>
+    <value>Data-Text Transcoder</value>
+  </data>
+  <data name="&gt;&gt;encodeToolStripMenuItem.Name" xml:space="preserve">
+    <value>encodeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;encodeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;decodeToolStripMenuItem.Name" xml:space="preserve">
+    <value>decodeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;decodeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

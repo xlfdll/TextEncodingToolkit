@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace TextEncodingToolkit
+namespace DataTextTranscoder
 {
     public partial class TextTranscoderForm : Form
     {

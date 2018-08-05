@@ -1,4 +1,4 @@
-﻿namespace TextEncodingToolkit
+﻿namespace DataTextTranscoder
 {
     partial class TextTranscoderForm
     {

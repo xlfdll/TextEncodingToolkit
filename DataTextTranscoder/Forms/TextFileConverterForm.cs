@@ -7,11 +7,11 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace TextEncodingToolkit
+namespace DataTextTranscoder
 {
-    public partial class TextEncodingConverterForm : Form
+    public partial class TextFileConverterForm : Form
     {
-        public TextEncodingConverterForm()
+        public TextFileConverterForm()
         {
             InitializeComponent();
         }
@@ -38,7 +38,7 @@ namespace TextEncodingToolkit
 
             if (filenames != null && filenames.Length > 0)
             {
-                LoadFile(filenames[0]);
+                SourceBytes = File.ReadAllBytes(filenames[0]);
             }
         }
 
@@ -73,7 +73,7 @@ namespace TextEncodingToolkit
 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    LoadFile(dlg.FileName);
+                    SourceBytes = File.ReadAllBytes(dlg.FileName);
                 }
             }
         }
@@ -126,7 +126,7 @@ namespace TextEncodingToolkit
                             }
                             else if (Clipboard.ContainsFileDropList())
                             {
-                                LoadFile(Clipboard.GetFileDropList()[0]);
+                                SourceBytes = File.ReadAllBytes(Clipboard.GetFileDropList()[0]);
                             }
 
                             break;

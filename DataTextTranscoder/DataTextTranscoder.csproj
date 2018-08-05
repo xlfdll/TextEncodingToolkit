@@ -8,8 +8,8 @@
     <ProjectGuid>{A9628E66-9168-4B3D-9920-9911E187190D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TextEncodingToolkit</RootNamespace>
-    <AssemblyName>TextEncodingToolkit</AssemblyName>
+    <RootNamespace>DataTextTranscoder</RootNamespace>
+    <AssemblyName>DataTextTranscoder</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Write.ico</ApplicationIcon>
@@ -42,10 +42,10 @@
   <ItemGroup>
     <Compile Include="Classes\Helpers\EncodingComboBoxHelper.cs" />
     <Compile Include="Classes\Helpers\EncodingHelper.cs" />
-    <Compile Include="Base64CoderForm.cs">
+    <Compile Include="Forms\Base64CoderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Base64CoderForm.designer.cs">
+    <Compile Include="Forms\Base64CoderForm.designer.cs">
       <DependentUpon>Base64CoderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Helpers\FormHelper.cs" />
@@ -55,31 +55,31 @@
     <Compile Include="Forms\MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TextEncodingConverterForm.cs">
+    <Compile Include="Forms\TextFileConverterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TextEncodingConverterForm.designer.cs">
-      <DependentUpon>TextEncodingConverterForm.cs</DependentUpon>
+    <Compile Include="Forms\TextFileConverterForm.designer.cs">
+      <DependentUpon>TextFileConverterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TextEncodingIntepreterForm.cs">
+    <Compile Include="Forms\TextTranscoderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TextEncodingIntepreterForm.designer.cs">
-      <DependentUpon>TextEncodingIntepreterForm.cs</DependentUpon>
+    <Compile Include="Forms\TextTranscoderForm.designer.cs">
+      <DependentUpon>TextTranscoderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Base64CoderForm.resx">
+    <EmbeddedResource Include="Forms\Base64CoderForm.resx">
       <DependentUpon>Base64CoderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TextEncodingConverterForm.resx">
-      <DependentUpon>TextEncodingConverterForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\TextFileConverterForm.resx">
+      <DependentUpon>TextFileConverterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TextEncodingIntepreterForm.resx">
-      <DependentUpon>TextEncodingIntepreterForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\TextTranscoderForm.resx">
+      <DependentUpon>TextTranscoderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -141,9 +141,6 @@
     <None Include="Resources\CycleGreen.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Gesture.png" />
-    <None Include="Resources\Letter1.png" />
-    <None Include="Resources\Handwriting.png" />
     <Content Include="Write.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

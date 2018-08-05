@@ -1,6 +1,6 @@
-﻿namespace TextEncodingToolkit
+﻿namespace DataTextTranscoder
 {
-    partial class TextEncodingConverterForm
+    partial class TextFileConverterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,14 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextEncodingConverterForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextFileConverterForm));
             this.mainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.destinationHexRichTextBox = new System.Windows.Forms.RichTextBox();
             this.textContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sourceHexRichTextBox = new System.Windows.Forms.RichTextBox();
             this.destinationEncodingComboBox = new System.Windows.Forms.ComboBox();
@@ -47,10 +44,13 @@
             this.textTargetLabel = new System.Windows.Forms.Label();
             this.sourceRichTextBox = new System.Windows.Forms.RichTextBox();
             this.destinationRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.loadButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
             this.hexTargetLabel = new System.Windows.Forms.Label();
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.mainTableLayoutPanel.SuspendLayout();
             this.textContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -98,28 +98,10 @@
             this.textContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.textContextMenuStrip_ItemClicked);
             this.textContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.textContextMenuStrip_Opening);
             // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Image = global::TextEncodingToolkit.Properties.Resources.Copy;
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            resources.ApplyResources(this.copyToolStripMenuItem, "copyToolStripMenuItem");
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Image = global::TextEncodingToolkit.Properties.Resources.Paste;
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            resources.ApplyResources(this.pasteToolStripMenuItem, "pasteToolStripMenuItem");
-            // 
             // textToolStripSeparator
             // 
             this.textToolStripSeparator.Name = "textToolStripSeparator";
             resources.ApplyResources(this.textToolStripSeparator, "textToolStripSeparator");
-            // 
-            // selectAllToolStripMenuItem
-            // 
-            this.selectAllToolStripMenuItem.Image = global::TextEncodingToolkit.Properties.Resources.Select;
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
             // 
             // deselectAllToolStripMenuItem
             // 
@@ -198,10 +180,34 @@
             this.destinationRichTextBox.Name = "destinationRichTextBox";
             this.destinationRichTextBox.ReadOnly = true;
             // 
+            // hexTargetLabel
+            // 
+            resources.ApplyResources(this.hexTargetLabel, "hexTargetLabel");
+            this.hexTargetLabel.Name = "hexTargetLabel";
+            this.mainTableLayoutPanel.SetRowSpan(this.hexTargetLabel, 2);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Image = global::DataTextTranscoder.Properties.Resources.Copy;
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            resources.ApplyResources(this.copyToolStripMenuItem, "copyToolStripMenuItem");
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Image = global::DataTextTranscoder.Properties.Resources.Paste;
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            resources.ApplyResources(this.pasteToolStripMenuItem, "pasteToolStripMenuItem");
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            this.selectAllToolStripMenuItem.Image = global::DataTextTranscoder.Properties.Resources.Select;
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
+            // 
             // loadButton
             // 
             resources.ApplyResources(this.loadButton, "loadButton");
-            this.loadButton.Image = global::TextEncodingToolkit.Properties.Resources.Load;
+            this.loadButton.Image = global::DataTextTranscoder.Properties.Resources.Load;
             this.loadButton.Name = "loadButton";
             this.loadButton.UseVisualStyleBackColor = true;
             this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
@@ -209,18 +215,12 @@
             // saveButton
             // 
             resources.ApplyResources(this.saveButton, "saveButton");
-            this.saveButton.Image = global::TextEncodingToolkit.Properties.Resources.Save;
+            this.saveButton.Image = global::DataTextTranscoder.Properties.Resources.Save;
             this.saveButton.Name = "saveButton";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // hexTargetLabel
-            // 
-            resources.ApplyResources(this.hexTargetLabel, "hexTargetLabel");
-            this.hexTargetLabel.Name = "hexTargetLabel";
-            this.mainTableLayoutPanel.SetRowSpan(this.hexTargetLabel, 2);
-            // 
-            // TextEncodingConverterForm
+            // TextFileConverterForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
@@ -229,7 +229,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TextEncodingConverterForm";
+            this.Name = "TextFileConverterForm";
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.TextFileConverterForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.TextFileConverterForm_DragDrop);

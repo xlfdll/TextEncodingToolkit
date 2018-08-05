@@ -7,9 +7,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-using TextEncodingToolkit.Properties;
+using DataTextTranscoder.Properties;
 
-namespace TextEncodingToolkit
+namespace DataTextTranscoder
 {
     public partial class Base64CoderForm : Form
     {
@@ -182,10 +182,10 @@ namespace TextEncodingToolkit
 
                                 while (readCount > 0)
                                 {
-                                    e.Cancel = fileProcessBackgroundWorker.CancellationPending;
-
-                                    if (e.Cancel)
+                                    if (fileProcessBackgroundWorker.CancellationPending)
                                     {
+                                        e.Cancel = true;
+
                                         break;
                                     }
                                     else
@@ -221,10 +221,10 @@ namespace TextEncodingToolkit
 
                                 while (writeCount > 0)
                                 {
-                                    e.Cancel = fileProcessBackgroundWorker.CancellationPending;
-
-                                    if (e.Cancel)
+                                    if (fileProcessBackgroundWorker.CancellationPending)
                                     {
+                                        e.Cancel = true;
+
                                         break;
                                     }
                                     else
@@ -261,7 +261,7 @@ namespace TextEncodingToolkit
                     break;
             }
 
-            if (e.Cancel || e.Result != null)
+            if (e.Cancel)
             {
                 File.Delete(saveFileName);
             }
@@ -273,7 +273,6 @@ namespace TextEncodingToolkit
             Int32 percentage = Convert.ToInt32(Math.Ceiling(percentageFactor * 100));
 
             String modeString = modeComboBox.SelectedItem.ToString();
-
             helpLabel.Text = String.Format("{0}ing... {1}%", modeString.Remove(modeString.Length - 1), percentage.ToString());
 
             if (percentage <= mainProgressBar.Maximum)
@@ -284,7 +283,7 @@ namespace TextEncodingToolkit
 
         private void fileProcessBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            helpLabel.Text = e.Cancelled ? "Operations cancelled." : ((e.Result == null) ? "All operations done." : e.Result.ToString());
+            helpLabel.Text = (e.Result == null) ? (!e.Cancelled ? "All operations done." : "Operations cancelled.") : e.Result.ToString();
 
             executeButton.Text = "&Browse...";
 

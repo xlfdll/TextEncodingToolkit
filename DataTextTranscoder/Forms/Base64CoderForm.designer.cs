@@ -1,4 +1,4 @@
-﻿namespace TextEncodingToolkit
+﻿namespace DataTextTranscoder
 {
     partial class Base64CoderForm
     {
@@ -39,9 +39,9 @@
             this.executeButton = new System.Windows.Forms.Button();
             this.encodingLabel = new System.Windows.Forms.Label();
             this.encodingComboBox = new System.Windows.Forms.ComboBox();
-            this.mainProgressBar = new System.Windows.Forms.ProgressBar();
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.fileProcessBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.mainProgressBar = new System.Windows.Forms.ProgressBar();
             this.mainTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,13 +118,6 @@
             this.encodingComboBox.Name = "encodingComboBox";
             this.encodingComboBox.SelectedIndexChanged += new System.EventHandler(this.encodingComboBox_SelectedIndexChanged);
             // 
-            // mainProgressBar
-            // 
-            this.mainTableLayoutPanel.SetColumnSpan(this.mainProgressBar, 4);
-            resources.ApplyResources(this.mainProgressBar, "mainProgressBar");
-            this.mainProgressBar.Name = "mainProgressBar";
-            this.mainProgressBar.Step = 1;
-            // 
             // fileProcessBackgroundWorker
             // 
             this.fileProcessBackgroundWorker.WorkerReportsProgress = true;
@@ -132,6 +125,13 @@
             this.fileProcessBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.fileProcessBackgroundWorker_DoWork);
             this.fileProcessBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.fileProcessBackgroundWorker_RunWorkerCompleted);
             this.fileProcessBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.fileProcessBackgroundWorker_ProgressChanged);
+            // 
+            // mainProgressBar
+            // 
+            this.mainTableLayoutPanel.SetColumnSpan(this.mainProgressBar, 4);
+            resources.ApplyResources(this.mainProgressBar, "mainProgressBar");
+            this.mainProgressBar.Name = "mainProgressBar";
+            this.mainProgressBar.Step = 1;
             // 
             // Base64CoderForm
             // 

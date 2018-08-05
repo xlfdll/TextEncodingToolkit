@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace TextEncodingToolkit
+namespace DataTextTranscoder
 {
     public partial class MainForm : Form
     {
@@ -36,7 +36,7 @@ namespace TextEncodingToolkit
 
             if (mainFormButton != null)
             {
-                if (mainFormButton == converterButton)
+                if (mainFormButton == fileConvertButton || mainFormButton == base64ConvertButton)
                 {
                     if (e.Data.GetDataPresent(DataFormats.FileDrop))
                     {
@@ -52,7 +52,7 @@ namespace TextEncodingToolkit
 
             if (mainFormButton != null)
             {
-                if (mainFormButton == converterButton)
+                if (mainFormButton == fileConvertButton)
                 {
                     fileConvertButton_Click(sender, e);
 
@@ -60,20 +60,51 @@ namespace TextEncodingToolkit
 
                     if (filenames != null && filenames.Length > 0)
                     {
-                        FormHelper.TextEncodingConverterForm.LoadFile(filenames[0]);
+                        FormHelper.TextFileConverterForm.LoadFile(filenames[0]);
+                    }
+                }
+                else if (mainFormButton == base64ConvertButton)
+                {
+                    String[] filenames = e.Data.GetData(DataFormats.FileDrop) as String[];
+
+                    if (filenames != null && filenames.Length > 0)
+                    {
+                        base64ModeContextMenuStrip.Tag = filenames[0];
+                        base64ModeContextMenuStrip.Show(base64ConvertButton, base64ConvertButton.PointToClient(Control.MousePosition), ToolStripDropDownDirection.BelowRight);
                     }
                 }
             }
         }
 
+        private void base64ModeContextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            base64ModeContextMenuStrip.Hide();
+
+            base64ConvertButton_Click(sender, e);
+
+            FormHelper.Base64CoderForm.LoadFile(base64ModeContextMenuStrip.Tag.ToString(), Int32.Parse(e.ClickedItem.Tag.ToString()));
+
+            base64ModeContextMenuStrip.Tag = null;
+        }
+
         private void fileConvertButton_Click(object sender, EventArgs e)
         {
-            FormHelper.ShowForm(TextEncodingTools.TextEncodingConverter);
+            FormHelper.ShowForm(Transcoders.TextFileConverter);
         }
 
         private void textConvertButton_Click(object sender, EventArgs e)
         {
-            FormHelper.ShowForm(TextEncodingTools.TextEncodingIntepreter);
+            FormHelper.ShowForm(Transcoders.TextTranscoder);
+        }
+
+        private void base64ConvertButton_Click(object sender, EventArgs e)
+        {
+            FormHelper.ShowForm(Transcoders.Base64Coder);
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

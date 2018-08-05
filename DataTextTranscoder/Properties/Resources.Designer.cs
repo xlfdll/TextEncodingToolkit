@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TextEncodingToolkit.Properties {
+namespace DataTextTranscoder.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TextEncodingToolkit.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TextEncodingToolkit.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DataTextTranscoder.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,6 +60,13 @@ namespace TextEncodingToolkit.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Card {
+            get {
+                object obj = ResourceManager.GetObject("Card", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Copy {
             get {
                 object obj = ResourceManager.GetObject("Copy", resourceCulture);
@@ -67,16 +74,23 @@ namespace TextEncodingToolkit.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Gesture {
+        internal static System.Drawing.Bitmap CycleGreen {
             get {
-                object obj = ResourceManager.GetObject("Gesture", resourceCulture);
+                object obj = ResourceManager.GetObject("CycleGreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Handwriting {
+        internal static System.Drawing.Bitmap CycleRed {
             get {
-                object obj = ResourceManager.GetObject("Handwriting", resourceCulture);
+                object obj = ResourceManager.GetObject("CycleRed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Letter {
+            get {
+                object obj = ResourceManager.GetObject("Letter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -84,6 +98,20 @@ namespace TextEncodingToolkit.Properties {
         internal static System.Drawing.Bitmap Load {
             get {
                 object obj = ResourceManager.GetObject("Load", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mail {
+            get {
+                object obj = ResourceManager.GetObject("Mail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap OK {
+            get {
+                object obj = ResourceManager.GetObject("OK", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

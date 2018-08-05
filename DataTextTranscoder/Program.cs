@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace TextEncodingToolkit
+namespace DataTextTranscoder
 {
     static class Program
     {

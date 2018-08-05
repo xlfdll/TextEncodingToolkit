@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextEncodingToolkit", "TextEncodingToolkit\TextEncodingToolkit.csproj", "{A9628E66-9168-4B3D-9920-9911E187190D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTextTranscoder", "DataTextTranscoder\DataTextTranscoder.csproj", "{A9628E66-9168-4B3D-9920-9911E187190D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
