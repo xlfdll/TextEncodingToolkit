@@ -1,0 +1,152 @@
+﻿<Window x:Class="TextEncodingToolkit.Base64Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextEncodingToolkit"
+        mc:Ignorable="d"
+        Title="Base64 Toolkit" Icon="pack://application:,,,/TextEncodingToolkit.ico"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Width="640" SizeToContent="Height" ResizeMode="NoResize"
+        Loaded="Base64Window_Loaded" Unloaded="Base64Window_Unloaded">
+
+    <Grid Grid.IsSharedSizeScope="True" Margin="3">
+        <Grid.Resources>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsBusy}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Labels"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="_Action"/>
+            <ComboBox Grid.Column="1" SelectedIndex="{Binding Path=SelectedActionIndex}">
+                <ComboBoxItem Content="Encode"/>
+                <ComboBoxItem Content="Decode"/>
+            </ComboBox>
+
+            <Label Grid.Column="2" Content="_Mode"/>
+            <ComboBox Grid.Column="3" SelectedIndex="{Binding Path=SelectedModeIndex}">
+                <ComboBoxItem Content="Text"/>
+                <ComboBoxItem Content="File (Custom)"/>
+            </ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=SelectedModeIndex}" Value="0">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Style>
+            </Grid.Style>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Labels"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="_Source"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=SourceText, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="_Result"/>
+            <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True"
+                     Text="{Binding Path=ResultText, Mode=OneWay}"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="_Encoding"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource EncodingComboBoxStyle}" Margin="3"
+                      ItemsSource="{Binding Path=Encodings}"
+                      SelectedIndex="{Binding Path=SelectedEncodingIndex}"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=SelectedModeIndex}" Value="1">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Style>
+            </Grid.Style>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsBusy}" Value="True">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Labels"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="_File"/>
+                <TextBox Grid.Column="1" IsReadOnly="False"
+                     Text="{Binding Path=SourceFilePath, Mode=OneWay, Converter={StaticResource FilePathToFileNameConverter}, TargetNullValue='Click &quot;Browse&quot; button to select a file, or drag &amp; drop a file here'}"
+                     AllowDrop="True" PreviewDragOver="SourceFilePathTextBox_PreviewDragOver" Drop="SourceFilePathTextBox_Drop"/>
+                <Button Grid.Column="2" Content="_Browse..." Command="{Binding Path=BrowseCommand}"/>
+            </Grid>
+
+            <Button Grid.Row="1" Command="{Binding Path=ExecuteCommand}" HorizontalAlignment="Right">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsBusy}" Value="True">
+                                <Setter Property="Content" Value="_Cancel"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+
+                        <Setter Property="Content" Value="E_xecute"/>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <ProgressBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="3"
+                         Maximum="100" Value="{Binding Path=CurrentFileProgress, Mode=OneWay}"/>
+        </Grid>
+    </Grid>
+</Window>

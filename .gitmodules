@@ -1,0 +1,3 @@
+[submodule "XDLibrary"]
+	path = XDLibrary
+	url = https://github.com/xlfdll/XDLibrary.git
