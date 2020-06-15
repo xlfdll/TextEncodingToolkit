@@ -17,19 +17,20 @@ namespace TextEncodingToolkit
         {
             this.SelectedActionIndex = 0;
             this.SelectedModeIndex = 0;
+            this.IsBusy = false;
+
             this.SelectedEncodingIndex = this.Encodings.IndexOf
                 (this.Encodings.First(e => e.CodePage == Encoding.UTF8.CodePage));
-            this.IsBusy = false;
         }
 
         private Int32 _selectedActionIndex;
         private Int32 _selectedModeIndex;
-        private Int32 _selectedEncodingIndex;
         private Boolean _isBusy;
+
+        private Int32 _selectedEncodingIndex;
+        private String _sourceText;
         private String _sourceFilePath;
         private Int32 _currentFileProgress;
-        private String _sourceText;
-        private String _resultText;
 
         public Int32 SelectedActionIndex
         {
@@ -54,8 +55,16 @@ namespace TextEncodingToolkit
 
         public Int32 SelectedEncodingIndex
         {
-            get => _selectedEncodingIndex;
-            set => SetField(ref _selectedEncodingIndex, value);
+            get
+            {
+                return _selectedEncodingIndex;
+            }
+            set
+            {
+                SetField(ref _selectedEncodingIndex, value);
+
+                OnPropertyChanged(nameof(this.ResultText));
+            }
         }
 
         public Boolean IsBusy
@@ -86,7 +95,15 @@ namespace TextEncodingToolkit
             {
                 SetField(ref _sourceText, value);
 
-                if (value != null)
+                OnPropertyChanged(nameof(this.ResultText));
+            }
+        }
+
+        public String ResultText
+        {
+            get
+            {
+                if (this.SourceText != null)
                 {
                     Encoding selectedEncoding = this.Encodings[this.SelectedEncodingIndex].GetEncoding();
 
@@ -95,37 +112,27 @@ namespace TextEncodingToolkit
                         switch (this.SelectedActionIndex)
                         {
                             case 0:
-                                Byte[] sourceBytes = selectedEncoding.GetBytes(value);
+                                Byte[] sourceBytes = selectedEncoding.GetBytes(this.SourceText);
 
-                                this.ResultText = Convert.ToBase64String(sourceBytes);
-
-                                break;
+                                return Convert.ToBase64String(sourceBytes);
                             case 1:
-                                Byte[] base64Bytes = Convert.FromBase64String(value);
+                                Byte[] base64Bytes = Convert.FromBase64String(this.SourceText);
 
-                                this.ResultText = selectedEncoding.GetString(base64Bytes);
-
-                                break;
+                                return selectedEncoding.GetString(base64Bytes);
                             default:
                                 throw new ApplicationException("Invalid action state occurred.");
                         }
                     }
                     catch (Exception ex)
                     {
-                        this.ResultText = ex.Message;
+                        return ex.Message;
                     }
                 }
                 else
                 {
-                    this.ResultText = null;
+                    return null;
                 }
             }
-        }
-
-        public String ResultText
-        {
-            get => _resultText;
-            private set => SetField(ref _resultText, value);
         }
 
         public RelayCommand<Object> BrowseCommand
