@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 using Microsoft.Win32;
 
@@ -79,8 +80,18 @@ namespace TextEncodingToolkit
 
         public String SourceFilePath
         {
-            get => _sourceFilePath;
-            set => SetField(ref _sourceFilePath, value);
+            get
+            {
+                return _sourceFilePath;
+            }
+            set
+            {
+                SetField(ref _sourceFilePath, value);
+
+                // Force re-evaluate CanExecute on all commands
+                // Enable the Execute button immediately
+                CommandManager.InvalidateRequerySuggested();
+            }
         }
 
         public Int32 CurrentFileProgress
