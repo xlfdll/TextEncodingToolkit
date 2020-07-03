@@ -75,11 +75,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\CompareTabItemUserControl.xaml">
+    <Page Include="Views\UserControls\CompareTabItemUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\ConvertTabItemUserControl.xaml">
+    <Page Include="Views\UserControls\ConvertTabItemUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,10 +132,10 @@
     <Compile Include="Views\Windows\Base64Window.xaml.cs">
       <DependentUpon>Base64Window.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CompareTabItemUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\CompareTabItemUserControl.xaml.cs">
       <DependentUpon>CompareTabItemUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ConvertTabItemUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\ConvertTabItemUserControl.xaml.cs">
       <DependentUpon>ConvertTabItemUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
