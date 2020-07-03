@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 using Microsoft.Win32;
 
@@ -21,6 +23,8 @@ namespace TextEncodingToolkit
 
             this.SelectedEncodingIndex = this.Encodings.IndexOf
                 (this.Encodings.First(e => e.CodePage == Encoding.UTF8.CodePage));
+
+            this.OperationProgressChanged += Base64ViewModel_ProgressChanged;
         }
 
         private Int32 _selectedActionIndex;
@@ -156,7 +160,7 @@ namespace TextEncodingToolkit
         public RelayCommand<Object> ExecuteCommand
             => new RelayCommand<Object>
             (
-                delegate
+                async delegate
                 {
                     if (!this.IsBusy)
                     {
@@ -171,26 +175,51 @@ namespace TextEncodingToolkit
                         {
                             this.IsBusy = true;
 
-                            backgroundWorker = new BackgroundWorker()
+                            if (this.CancellationTokenSource != null)
                             {
-                                WorkerReportsProgress = true,
-                                WorkerSupportsCancellation = true
-                            };
-                            backgroundWorker.DoWork += FileModeBackgroundWorker_DoWork;
-                            backgroundWorker.ProgressChanged += FileModeBackgroundWorker_ProgressChanged;
-                            backgroundWorker.RunWorkerCompleted += FileModeBackgroundWorker_RunWorkerCompleted;
+                                this.CancellationTokenSource.Dispose();
+                            }
 
-                            backgroundWorker.RunWorkerAsync(new Object[]
+                            this.CancellationTokenSource = new CancellationTokenSource();
+
+                            try
                             {
-                                this.SourceFilePath,
-                                dialog.FileName,
-                                this.SelectedActionIndex
-                            });
+                                // Run all operations in one async block instead of using ReadAsync/WriteAsync methods
+                                // Otherwise context switch would be very expensive
+                                await Task.Run(() =>
+                                {
+                                    this.PerformBase64FileOperation(this.SourceFilePath, dialog.FileName, this.SelectedActionIndex);
+                                });
+
+                                this.OperationProgressChanged?.Invoke(this, new ProgressChangedEventArgs(100, null));
+
+                                if (!this.CancellationTokenSource.IsCancellationRequested)
+                                {
+                                    this.OperationSucceeded?.Invoke(this, new EventArgs());
+                                }
+                                else
+                                {
+                                    if (File.Exists(dialog.FileName))
+                                    {
+                                        File.Delete(dialog.FileName);
+                                    }
+
+                                    this.OperationCancelled?.Invoke(this, new EventArgs());
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                this.OperationErrorOccurred?.Invoke(this, new ExceptionEventArgs(ex));
+                            }
+                            finally
+                            {
+                                this.IsBusy = false;
+                            }
                         }
                     }
                     else
                     {
-                        backgroundWorker.CancelAsync();
+                        this.CancellationTokenSource.Cancel();
                     }
                 },
                 delegate
@@ -199,25 +228,23 @@ namespace TextEncodingToolkit
                 }
             );
 
-        #region BackgroundWorker Event Handlers
+        public event EventHandler<EventArgs> OperationSucceeded;
+        public event EventHandler<EventArgs> OperationCancelled;
+        public event EventHandler<ExceptionEventArgs> OperationErrorOccurred;
 
-        private void FileModeBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        private event ProgressChangedEventHandler OperationProgressChanged;
+        private CancellationTokenSource CancellationTokenSource { get; set; }
+
+        private void PerformBase64FileOperation(String sourceFilePath, String targetFilePath, Int32 actionIndex)
         {
-            Object[] arguments = e.Argument as Object[];
-
-            String sourceFilePath = arguments[0] as String;
-            String targetFilePath = arguments[1] as String;
-            Int32 action = Convert.ToInt32(arguments[2]);
-
             Int64 progress = 0;
 
-            // Use 3 bytes (24 bits) to form 4 6-bit encoded characters
-            switch (action)
+            switch (actionIndex)
             {
                 case 0:
                     using (FileStream sourceFileStream = File.OpenRead(sourceFilePath))
                     {
-                        Int64 singlePercentStreamLength = Convert.ToInt32(sourceFileStream.Length * 0.01);
+                        Int64 singlePercentStreamLength = Convert.ToInt64(sourceFileStream.Length * 0.01);
 
                         using (StreamWriter targetStreamWriter = File.CreateText(targetFilePath))
                         {
@@ -227,10 +254,8 @@ namespace TextEncodingToolkit
 
                             while (readCount > 0)
                             {
-                                if (backgroundWorker.CancellationPending)
+                                if (this.CancellationTokenSource.IsCancellationRequested)
                                 {
-                                    e.Cancel = true;
-
                                     break;
                                 }
 
@@ -241,7 +266,10 @@ namespace TextEncodingToolkit
                                 // Limit the times of progress report, or UI would be locked up with memory leaks due to the massive cross-thread calls
                                 if (progress % singlePercentStreamLength == 0)
                                 {
-                                    backgroundWorker.ReportProgress(Convert.ToInt32(progress * 100.0 / sourceFileStream.Length));
+                                    this.OperationProgressChanged?.Invoke(this,
+                                        new ProgressChangedEventArgs
+                                        (Convert.ToInt32(progress * 100.0 / sourceFileStream.Length),
+                                        null));
                                 }
 
                                 readCount = sourceFileStream.Read(sourceBlockBytes, 0, sourceBlockByteCount);
@@ -265,12 +293,11 @@ namespace TextEncodingToolkit
 
                                 while (writeCount > 0)
                                 {
-                                    if (backgroundWorker.CancellationPending)
+                                    if (this.CancellationTokenSource.IsCancellationRequested)
                                     {
-                                        e.Cancel = true;
-
                                         break;
                                     }
+
                                     progress += writeCount;
 
                                     Byte[] targetBlockBytes = Convert.FromBase64CharArray(base64BlockCharacters, 0, writeCount);
@@ -280,7 +307,10 @@ namespace TextEncodingToolkit
                                     // Limit the times of progress report, or UI would be locked up with memory leaks due to the massive cross-thread calls
                                     if (progress % singlePercentStreamLength == 0)
                                     {
-                                        backgroundWorker.ReportProgress(Convert.ToInt32(progress * 100.0 / sourceStreamReader.BaseStream.Length));
+                                        this.OperationProgressChanged?.Invoke(this,
+                                            new ProgressChangedEventArgs
+                                            (Convert.ToInt32(progress * 100.0 / sourceStreamReader.BaseStream.Length),
+                                            null));
                                     }
 
                                     writeCount = sourceStreamReader.Read(base64BlockCharacters, 0, base64BlockCharacterCount);
@@ -302,46 +332,11 @@ namespace TextEncodingToolkit
                 default:
                     throw new ApplicationException("Invalid action state occurred.");
             }
-
-            if (e.Cancel && File.Exists(targetFilePath))
-            {
-                File.Delete(targetFilePath);
-            }
-
-            backgroundWorker.ReportProgress(100);
         }
 
-        private void FileModeBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void Base64ViewModel_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             this.CurrentFileProgress = e.ProgressPercentage;
         }
-
-        private void FileModeBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error != null)
-            {
-                this.OperationErrorOccurred?.Invoke(sender, new ExceptionEventArgs(e.Error));
-            }
-            else if (e.Cancelled)
-            {
-                this.OperationCancelled?.Invoke(sender, new EventArgs());
-            }
-            else
-            {
-                this.OperationSucceeded?.Invoke(sender, new EventArgs());
-            }
-
-            this.IsBusy = false;
-
-            backgroundWorker.Dispose();
-        }
-
-        private BackgroundWorker backgroundWorker;
-
-        #endregion
-
-        public event EventHandler<EventArgs> OperationSucceeded;
-        public event EventHandler<EventArgs> OperationCancelled;
-        public event EventHandler<ExceptionEventArgs> OperationErrorOccurred;
     }
 }
