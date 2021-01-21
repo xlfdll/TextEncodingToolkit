@@ -5,7 +5,7 @@ using Xlfdll;
 
 namespace TextEncodingToolkit
 {
-    public abstract class BaseViewModel : ObservableObject
+    public abstract class ViewModelBase : ObservableObject
     {
         public ObservableCollection<EncodingInfo> Encodings
             => new ObservableCollection<EncodingInfo>(Encoding.GetEncodings());

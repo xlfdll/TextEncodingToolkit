@@ -14,7 +14,7 @@ using Xlfdll.Windows.Presentation;
 
 namespace TextEncodingToolkit
 {
-    public class Base64ViewModel : BaseViewModel
+    public class Base64ViewModel : ViewModelBase
     {
         public Base64ViewModel()
         {

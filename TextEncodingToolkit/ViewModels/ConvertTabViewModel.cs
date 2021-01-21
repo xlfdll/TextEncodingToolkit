@@ -10,7 +10,7 @@ using Xlfdll.Windows.Presentation;
 
 namespace TextEncodingToolkit
 {
-    public class ConvertTabViewModel : BaseViewModel
+    public class ConvertTabViewModel : ViewModelBase
     {
         public ConvertTabViewModel()
         {

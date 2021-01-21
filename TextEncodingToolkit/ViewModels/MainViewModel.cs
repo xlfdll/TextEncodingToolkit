@@ -5,7 +5,7 @@ using Xlfdll.Windows.Presentation.Dialogs;
 
 namespace TextEncodingToolkit
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : ViewModelBase
     {
         public ConvertTabViewModel ConvertTabViewModel
             => new ConvertTabViewModel();

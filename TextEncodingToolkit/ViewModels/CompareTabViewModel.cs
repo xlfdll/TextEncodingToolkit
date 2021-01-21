@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TextEncodingToolkit
 {
-    public class CompareTabViewModel : BaseViewModel
+    public class CompareTabViewModel : ViewModelBase
     {
         public CompareTabViewModel()
         {

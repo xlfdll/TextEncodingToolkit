@@ -125,7 +125,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Helpers\DataHelper.cs" />
     <Compile Include="ViewModels\Base64ViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ConvertTabViewModel.cs" />
     <Compile Include="ViewModels\CompareTabViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
