@@ -12,7 +12,7 @@ using Xlfdll;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Xlfdll Workstation")]
 [assembly: AssemblyProduct("Text Encoding Toolkit")]
-[assembly: AssemblyCopyright("© 2018 Xlfdll Workstation")]
+[assembly: AssemblyCopyright("© 2009-2018 Xlfdll Workstation")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
