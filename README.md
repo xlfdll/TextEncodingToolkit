@@ -4,7 +4,7 @@ A toolkit for viewing and testing various characteristics of text encodings
 ## System Requirements
 * .NET Framework 4.8
 
-[Runtime configuration](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-configure-an-app-to-support-net-framework-4-or-4-5) is needed for running on other versions of .NET Framework.
+[Runtime configuration](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-configure-an-app-to-support-net-framework-4-or-4-5) may be needed for running on other versions of .NET Framework.
 
 ## Usage
 ### Convert Tab
@@ -69,7 +69,7 @@ Click **Browse...** button to select a file, then click **Execute** button to pe
 ## Development Prerequisites
 * Visual Studio 2019+
 
-Before the build, generate-build-number.sh needs to be executed in a Git / Bash shell to generate build information code file (BuildInfo.cs).
+Before the build, generate-build-number.sh needs to be executed in a Git / Bash shell to generate build information code file (`BuildInfo.cs`).
 
 ## External Sources
 Icons are from [Modern UI Icons](http://modernuiicons.com/), which are licensed under [CC BY-ND 3.0](https://github.com/Templarian/WindowsIcons/blob/master/WindowsPhone/license.txt).
